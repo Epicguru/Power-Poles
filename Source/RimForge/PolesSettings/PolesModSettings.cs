@@ -15,8 +15,10 @@ public class PolesModSettings : ModSettings
     public static float CableMaxDistance = 20;
     [TweakValue("RimForge", 0, 10)]
     public static int CableSegmentsPerCell = 6;
+    [TweakValue("RimForge", 0.05f, 0.3f)]
+    public static float CableThickness = 0.2f;
 
-    private static bool showAdvanced;
+	private static bool showAdvanced;
     private static Vector2 scroll;
     private static Rect viewRect;
 
