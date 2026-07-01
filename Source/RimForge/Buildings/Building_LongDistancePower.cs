@@ -247,6 +247,13 @@ namespace RimForge.Buildings
         {
             base.TickRare();
 
+            // When this building is uninstalled (minified), it is no longer spawned on a map.
+            // The enclosing MinifiedThing still propagates ticks to its contents, so TickRare
+            // keeps firing with a null Map. Bail out early to avoid NullReferenceException in
+            // Roofed() and other map-dependent calls below.
+            if (Map == null || !Spawned)
+                return;
+
             isUnderRoofCache = Position.Roofed(Map);
 
             if (!CanHaveConnectionsUnderRoof && IsUnderRoof && TotalLinkCount > 0)
